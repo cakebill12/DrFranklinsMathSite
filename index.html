@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miller's Games Menu</title>
+    <style>
+        body { margin: 0; }
+        #gameMenu {
+            position: fixed; top: 0; right: 0; width: 300px; height: 100%;
+            background-color: #1e1e1e; color: #ffffff; z-index: 9999; padding: 10px; display: flex; flex-direction: column;
+            transform: translateX(100%); transition: transform 0.3s ease-in-out; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            overflow-y: auto; 
+        }
+        #gameMenu.show { transform: translateX(0); }
+        #gameMenu h1 { text-align: center; color: #ffffff; font-weight: bold; }
+        #gameMenu button {
+            background-color: #333333; color: white; border: none; padding: 15px; margin: 5px 0; cursor: pointer;
+            transition: background-color 0.3s; width: 100%;
+        }
+        #gameMenu button:hover {
+            background-color: #555555;
+        }
+        #gameFrame { 
+            position: fixed; top: 0; left: 20px; right: 320px; bottom: 0; 
+            border: none; z-index: 10000; 
+            margin: 20px;
+            width: calc(100% - 360px); 
+            height: calc(100% - 40px);
+        }
+    </style>
+</head>
+<body>
+    <div id="gameMenu">
+        <h1>Miller's Games Menu</h1>
+        <button onclick="openGame('https://tylerpalko.github.io/gamehub/1v1.lol/')">1v1.LOL</button>
+        <button onclick="openGame('https://xlegends.github.io/bitlife/')">BitLife</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/UnityExplorer@30e7601c53b57634d2288fd993d8baaeae060eb2/CSConsole/Lexers/ab.xml&container=ig')">Angry Birds</button>
+        <button onclick="openGame('https://doodle-jump.co/game/doodle-jump/')">Doodle Jump</button>
+        <button onclick="openGame('https://geometrylite.io/game/geometry-lite-full-version/')">Geometry Dash</button>
+        <button onclick="openGame('https://sd592g.github.io/zj684od4lfg/')">Minecraft</button>
+        <button onclick="openGame('https://77pen.github.io/p8/subway-surfers-newyork/')">Subway Surfers</button>
+        <button onclick="openGame('https://www.hoodamath.com/mobile/games/ovo/game.html?nocheckorient=1')">OvO</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/wergboy/Meteor@0081fe7ee967280bd04fc97f237bcdbdf5a1aede/examples/react-in-blaze/lib/tst.xml&container=ig')">Tanuki Sunset</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/toastjr@01e87a80ca1def9255173c785896d378b2d0bec9/build/6sp.xml&container=ig')">Slope</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/bobydob/JSEngine@99563e3bf6eb25323e3bd5af20dcd9a261b97991/build/m3m/m3m.xml&container=ig')">Moto X3M</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/bobydob/JSEngine@e7d53b913d54429e5e118ca9541fb0f8f1f66bdc/dist/cc.xml&container=ig')">Cookie Clicker</button>
+        <button onclick="openGame('https://smashkarts.io/')">Smash Karts</button>
+        <button onclick="openGame('https://script.google.com/macros/s/AKfycbyfMPVIGx6dJPrYKeE9e4Erj949-dH28pWVRjdV1vgnoylpBV8af03JNLoz2MwAIBLECg/exec')">Happy Wheels</button>
+        <button onclick="openGame('https://donda.glitch.me/')">donda.glitch.me</button>
+        <button onclick="openGame('https://glacierarcade.win/')">Glacier Arcade</button>
+        <button onclick="openGame('https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/139948058740159493/files/index.html')">Brawl Guys</button>
+        <button onclick="openGame('https://kingofkfcjamal.github.io/CaseClicker/')">Case Clicker</button>
+        <button onclick="openGame('https://23azostore.github.io/s3/super-liquid-soccer/')">Super Liquid Soccer</button>
+        <button onclick="openGame('https://shawn43.github.io/retrobowl-unlimited/')">Retro Bowl</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://72682389-756457502729861133.preview.editmysite.com/uploads/b/11886820-896015480911618794/files/tf.xml&container=ig')">Tiny Fishing</button>
+        <button onclick="openGame('https://yp3d.com/ships3d/')">Ships 3D</button>
+        <button onclick="openGame('https://drivemad.me/iframe/index.html')">Drive Mad</button>
+        <button onclick="openGame('https://htmlxm.github.io/h5/minibattles/')">12 Mini Battles</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/element@9cccb2fafb569c963501a5d818472b561121cea6/totm.xml&container=ig')">Tomb Of The Mask</button>
+        <button onclick="openGame('https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/f107b843-3661-4036-9397-2b0c6414a369%2Ffireboy-and-watergirl.xml&container=ig')">Fireboy And Watergirl</button>    
+    </div>
+    <iframe id="gameFrame"></iframe>
+
+    <script>
+        window.openGame = function(url) {
+            document.getElementById('gameFrame').src = url;
+        };
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '\\') {
+                const menu = document.getElementById('gameMenu');
+                menu.classList.toggle('show');
+                document.getElementById('gameFrame').style.display = menu.classList.contains('show') ? 'block' : 'none';
+            }
+        });
+
+        // Show the menu by default
+        document.getElementById('gameMenu').classList.add('show');
+    </script>
+</body>
+</html>
